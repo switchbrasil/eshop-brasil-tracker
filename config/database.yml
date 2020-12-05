@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
+  host: localhost
+  port: 5432
   database: eshop_brasil_tracker_production
-  username: eshop_brasil_tracker
-  password: <%= ENV['ESHOP_BRASIL_TRACKER_DATABASE_PASSWORD'] %>
+  username: rails
+  password: example

@@ -17,6 +17,7 @@ module DiscordNotifications
           builder << embed
         end
         client.execute(builder, true)
+        sleep 3
       rescue => e
         Raven.capture_exception(e,
           backtrace: e.backtrace,
