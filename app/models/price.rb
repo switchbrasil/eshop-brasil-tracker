@@ -27,7 +27,7 @@ class Price < ApplicationRecord
   end
 
   def create_discord_notification
-    if saved_change_to_id && saved_change_to_id.first.nil? || (current_price_changed? && has_price_drop?)
+    if (saved_change_to_id && saved_change_to_id.first.nil?) || (current_price_changed? && has_price_drop?)
       discord_notification = discord_notifications.new(
         title: item.title,
         url: item.website_url,
@@ -56,7 +56,7 @@ class Price < ApplicationRecord
 
   def has_price_drop?
     if saved_change_to_discount_price_cents?
-      saved_change_to_discount_price_cents.second.to_i < saved_change_to_discount_price_cents.first.to_i
+      saved_change_to_discount_price_cents.first.to_i == 0 || saved_change_to_discount_price_cents.second.to_i < saved_change_to_discount_price_cents.first.to_i
     elsif saved_change_to_regular_price_cents?
       saved_change_to_regular_price_cents.second.to_i < saved_change_to_regular_price_cents.first.to_i
     end

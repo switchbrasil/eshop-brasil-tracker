@@ -7,7 +7,7 @@ module Prices
     def call
       data_prices = []
       Item.with_nsuid.find_in_batches(batch_size: 99) do |batch|
-        data_prices += client.fetch(country: 'MX', lang: 'es', nsuids: batch.pluck(:nsuid))
+        data_prices += client.fetch(country: 'BR', lang: 'pt', nsuids: batch.pluck(:nsuid))
       end
       self.data_prices = data_prices
     end

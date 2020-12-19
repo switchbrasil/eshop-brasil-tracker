@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem 'awesome_print', '1.8.0'
+gem 'byebug', '11.1.3'
 gem 'algoliasearch', '1.27.5'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'discordrb-webhooks', '3.3.0'
@@ -23,10 +25,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'webpacker', '~> 5.0'
 gem 'whenever'
 
-group :development, :test do
-  gem 'awesome_print'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
 group :development do
   gem 'listen', '~> 3.3'

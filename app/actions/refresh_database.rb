@@ -8,7 +8,7 @@ class RefreshDatabase < Actor
       Prices::Import.call
     end
 
-    Task.start 'Import Prices' do
+    Task.start 'Dispatch notifications' do
       DiscordNotifications::Send.call
     end
   end
