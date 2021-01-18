@@ -11,6 +11,7 @@ module DiscordNotifications
           embed.title = discord_notification.title
           embed.description = discord_notification.description
           embed.url = discord_notification.url
+          embed.image = Discordrb::Webhooks::EmbedImage.new(url: discord_notification.image) if discord_notification.image
           embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: discord_notification.thumbnail)
           embed.timestamp = discord_notification.created_at
           discord_notification.fields.each { |f| embed.add_field(f.symbolize_keys) }

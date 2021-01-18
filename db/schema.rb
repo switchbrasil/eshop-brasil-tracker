@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_214730) do
+ActiveRecord::Schema.define(version: 2021_01_18_181950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_214730) do
     t.datetime "sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["created_at"], name: "index_discord_notifications_on_created_at", order: :desc
     t.index ["notificable_type", "notificable_id"], name: "index_discord_notifications_on_notificable"
     t.index ["sent_at"], name: "index_discord_notifications_on_sent_at", where: "(sent_at IS NULL)"

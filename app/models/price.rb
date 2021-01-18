@@ -71,6 +71,7 @@ class Price < ApplicationRecord
       title: item.title,
       url: item.website_url,
       thumbnail: item.main_picture_url,
+      image: item.banner_picture_url,
       fields: [
         { name: 'Preço Atual', value: current_price.format }
       ]
