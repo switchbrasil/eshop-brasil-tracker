@@ -4,7 +4,7 @@ module DiscordNotifications
       client = Discordrb::Webhooks::Client.new(url: 'https://discord.com/api/webhooks/784085888631308379/0wylP_yojNRPIbfA_zIhYlC5nChasntE_JhONyng11LbnrSvPMdDXh8hEBokPxIl4xfw')
       DiscordNotification.pending.find_in_batches(batch_size: 10) do |notifications_batch|
         builder = Discordrb::Webhooks::Builder.new
-        builder.content = 'Aqui vai algumas atualizações'
+        builder.content = 'Aqui vão algumas atualizações'
         notifications_batch.each do |discord_notification|
           embed = Discordrb::Webhooks::Embed.new
           embed.color = rand(1..16777215)
