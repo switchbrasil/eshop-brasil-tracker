@@ -43,6 +43,7 @@ class Price < ApplicationRecord
         ]
         if saved_change_to_id?
           discord_notification.description = '🔥🤑 Preço revelado e com desconto!!!'
+          discord_notification.image = item.banner_picture_url
         else
           discord_notification.description = '🤑 Jogo em promoção!!!'
         end
