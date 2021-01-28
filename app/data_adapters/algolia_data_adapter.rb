@@ -50,15 +50,25 @@ class AlgoliaDataAdapter
   end
 
   def main_picture_url
-    "https://www.nintendo.com#{@data['boxart']}"
+    url = @data['boxart']
+    url = "https://www.nintendo.com#{url}" unless url.start_with?('http')
+    url
   end
 
   def banner_picture_url
-    "https://www.nintendo.com#{@data['horizontalHeaderImage']}" if @data['horizontalHeaderImage']
+    return if @data['horizontalHeaderImage'].blank?
+
+    url = @data['horizontalHeaderImage']
+    url = "https://www.nintendo.com#{url}" unless url.start_with?('http')
+    url
   end
 
   def screenshot_url
-    "https://www.nintendo.com#{@data['screenshot']}" if @data['screenshot']
+    return if @data['screenshot'].blank?
+
+    url = @data['screenshot']
+    url = "https://www.nintendo.com#{url}" unless url.start_with?('http')
+    url
   end
 
   def external_id
