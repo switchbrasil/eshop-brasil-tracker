@@ -51,6 +51,7 @@ class AlgoliaDataAdapter
 
   def main_picture_url
     url = @data['boxart']
+    return banner_picture_url if url.blank?
     url = "https://www.nintendo.com#{url}" unless url.start_with?('http')
     url
   end
