@@ -18,8 +18,7 @@ class Item < ApplicationRecord
       image: banner_picture_url,
       description: '✨ Novo jogo adicionado',
       fields: [
-        { name: 'Data de lançamento', value: release_date_display },
-        { name: 'Descrição', value: description }
+        { name: 'Data de lançamento', value: release_date_display }
       ]
     )
   end
