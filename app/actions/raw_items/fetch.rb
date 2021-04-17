@@ -20,7 +20,7 @@ module RawItems
 
     def fetch_data(query:)
       data = client.fetch(index: client.index_asc, query: query)
-      data += client.fetch(index: client.index_desc, query: query) if data.size >= 1000
+      data += client.fetch(index: client.index_desc, query: query) if data.size >= 500
       data
     end
   end
