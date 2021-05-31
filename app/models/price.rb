@@ -43,6 +43,7 @@ class Price < ApplicationRecord
         ]
         if saved_change_to_id?
           discord_notification.description = '🔥🤑 Preço revelado e com desconto!!!'
+          discord_notification.image = item.banner_picture_url
         else
           discord_notification.description = '🤑 Jogo em promoção!!!'
         end
@@ -50,6 +51,7 @@ class Price < ApplicationRecord
     elsif saved_change_to_regular_price_cents?
       if saved_change_to_id?
         discord_notification.description = '🔥 Preço revelado!!!'
+        discord_notification.image = item.banner_picture_url
       else
         discord_notification.description = '🔧 Reajuste de preço'
         old_price = Money.new(saved_change_to_regular_price_cents.first.to_i, current_price.currency.iso_code)

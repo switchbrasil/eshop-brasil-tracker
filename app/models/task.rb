@@ -5,11 +5,7 @@ class Task < ApplicationRecord
       yield
       task.update!(status: 'done')
     rescue => e
-      Raven.capture_exception(e,
-        backtrace: e.backtrace,
-        level: :fatal,
-        extra: { task: task }
-      )
+      Sentry.capture_exception(e, level: :fatal, extra: { task: task })
       task.update!(status: 'failed', message: "#{e.class.name} - #{e.message}")
     end
   end

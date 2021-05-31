@@ -11,11 +11,7 @@ module Prices
         price.assign_attributes(data)
         price.save!
       rescue => e
-        Raven.capture_exception(e,
-          backtrace: e.backtrace,
-          level: :fatal,
-          extra: { data: data, price: price }
-        )
+        Sentry.capture_exception(e, level: :fatal, extra: { data: data, price: price })
       end
     end
   end

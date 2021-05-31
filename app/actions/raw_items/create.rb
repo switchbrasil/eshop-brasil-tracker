@@ -24,11 +24,7 @@ module RawItems
       raw_item.assign_attributes(data: data, checksum: data_checksum, imported: false)
       raw_item.save!
     rescue => e
-      Raven.capture_exception(e,
-        backtrace: e.backtrace,
-        level: :fatal,
-        extra: { raw_item: raw_item }
-      )
+      Sentry.capture_exception(e, level: :fatal, extra: { raw_item: raw_item })
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_181950) do
+ActiveRecord::Schema.define(version: 2021_05_31_214603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -30,9 +30,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_181950) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
-    t.index ["created_at"], name: "index_discord_notifications_on_created_at", order: :desc
     t.index ["notificable_type", "notificable_id"], name: "index_discord_notifications_on_notificable"
-    t.index ["sent_at"], name: "index_discord_notifications_on_sent_at", where: "(sent_at IS NULL)"
+    t.index ["notificable_type", "sent_at", "title"], name: "idx_type_sent_at_title", where: "(sent_at IS NULL)"
   end
 
   create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
