@@ -12,7 +12,11 @@ module DiscordNotifications
 
     def send_notifications_to(url, scope)
       client = Discordrb::Webhooks::Client.new(url: url)
-      DiscordNotification.pending.send(scope).limit(30).find_in_batches(batch_size: 10) do |notifications|
+      DiscordNotification
+        .pending
+        .send(scope)
+        .order(:title)
+        .find_in_batches(batch_size: 10) do |notifications|
         builder = build_builder(notifications)
         client.execute(builder, true)
         sleep 3
