@@ -36,7 +36,7 @@ class Price < ApplicationRecord
         discord_notification.description = '😭 Promoção encerrada.'
       else
         discord_notification.fields += [
-          { name: 'Preço sem desconto', value: regular_price.format },
+          { name: 'Preço sem desconto', value: regular_price.format_brl },
           { name: 'Desconto', value: "#{discount_percentage}% OFF" },
           { name: 'Inicia em', value: I18n.l(discount_start_date), inline: true },
           { name: 'Vai até', value: I18n.l(discount_end_date), inline: true }
@@ -56,7 +56,7 @@ class Price < ApplicationRecord
         discord_notification.description = '🔧 Reajuste de preço'
         old_price = Money.new(saved_change_to_regular_price_cents.first.to_i, current_price.currency.iso_code)
         discord_notification.fields += [
-          { name: 'Preço antes do reajuste', value: old_price.format }
+          { name: 'Preço antes do reajuste', value: old_price.format_brl }
         ]
       end
     end
@@ -74,7 +74,7 @@ class Price < ApplicationRecord
       url: item.website_url,
       thumbnail: item.main_picture_url,
       fields: [
-        { name: 'Preço Atual', value: current_price.format }
+        { name: 'Preço Atual', value: current_price.format_brl }
       ]
     }
   end
