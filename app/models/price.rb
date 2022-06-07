@@ -45,7 +45,7 @@ class Price < ApplicationRecord
           discord_notification.description = '🔥🤑 Preço revelado e com desconto!!!'
           discord_notification.image = item.banner_picture_url
         else
-          discord_notification.description = '🤑 Jogo em promoção!!!'
+          discord_notification.description = '🤑 Item em promoção!!!'
         end
       end
     elsif saved_change_to_regular_price_cents?
@@ -70,9 +70,9 @@ class Price < ApplicationRecord
 
   def discord_notification_attributes
     {
-      title: item.title,
+      title: "[#{item.item_type}] #{item.title}",
       url: item.website_url,
-      thumbnail: item.main_picture_url,
+      thumbnail: item.banner_picture_url,
       fields: [
         { name: 'Preço Atual', value: current_price.format_brl }
       ]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_214603) do
+ActiveRecord::Schema.define(version: 2022_06_07_224640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -41,18 +41,17 @@ ActiveRecord::Schema.define(version: 2021_05_31_214603) do
     t.string "description", limit: 4096
     t.string "website_url", null: false
     t.string "nsuid", limit: 128
-    t.string "main_picture_url", limit: 512, null: false
-    t.string "banner_picture_url", limit: 512
-    t.string "screenshot_url", limit: 512
+    t.string "main_picture_url", limit: 5000
+    t.string "banner_picture_url", limit: 5000
     t.string "genres", default: [], array: true
-    t.string "developers", default: [], array: true
-    t.string "publishers", default: [], array: true
     t.string "franchises", default: [], array: true
-    t.jsonb "extra", default: {}
-    t.date "release_date", null: false
-    t.string "release_date_display", null: false
+    t.date "release_date"
+    t.string "release_date_display"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "item_type", limit: 120
+    t.string "developer", limit: 1024
+    t.string "publisher", limit: 1024
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
     t.index ["nsuid"], name: "index_items_on_nsuid", where: "(nsuid IS NOT NULL)"
     t.index ["slug"], name: "index_items_on_slug", unique: true

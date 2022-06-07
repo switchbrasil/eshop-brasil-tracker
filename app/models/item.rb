@@ -12,13 +12,14 @@ class Item < ApplicationRecord
 
   def create_discord_notification
     discord_notifications.create(
-      title: title,
+      title: "[#{item_type}] #{title}",
       url: website_url,
-      thumbnail: main_picture_url,
+      thumbnail: banner_picture_url,
       image: banner_picture_url,
-      description: '✨ Novo jogo adicionado',
+      description: "✨ Adição de #{item_type}",
       fields: [
-        { name: 'Data de lançamento', value: release_date_display }
+        { name: 'Editora', value: publisher.presence || "???" },
+        { name: 'Desenvolvedora', value: developer.presence || "???" }
       ]
     )
   end
