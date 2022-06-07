@@ -50,7 +50,7 @@ module DiscordNotifications
     end
 
     def handle_error(e, notifications)
-      raise e
+      raise e if Rails.env.development?
       Sentry.capture_exception(e, level: :fatal, extra: { discord_notification_ids: notifications.pluck(:id) })
     end
 
