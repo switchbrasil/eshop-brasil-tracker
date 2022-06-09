@@ -32,9 +32,7 @@ class Price < ApplicationRecord
     discord_notification = discord_notifications.new(discord_notification_attributes)
 
     if saved_change_to_discount_price_cents?
-      if discount_price.nil?
-        discord_notification.description = '😭 Promoção encerrada.'
-      else
+      if discount_price.present?
         discord_notification.fields += [
           { name: 'Preço sem desconto', value: regular_price.format_brl },
           { name: 'Desconto', value: "#{discount_percentage}% OFF" },
